@@ -1,9 +1,9 @@
 package org.ohgiraffers.board.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.ohgiraffers.board.domain.dto.*;
-import org.ohgiraffers.board.domain.dto.DeletePostResponse;
 import org.ohgiraffers.board.service.PostService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,7 +26,9 @@ import org.springframework.web.bind.annotation.*;
  * 웹의 장점을 최대한 활용할 수 있는 아키텍쳐
  * */
 
+@Tag(name = "posts", description = "게시판 API")
 @RestController
+@ResponseBody
 @RequestMapping("/api/v1/posts")
 // @RequiredArgsConstructor : final 혹은 @NonNull 어노테이션이 붙은 필드에 대한 생성자 자동 생성
 @RequiredArgsConstructor
@@ -35,12 +37,12 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping
+    @Operation(
+            summary = "게시물을 등록하는 메소드", description = "title, content를 입력하세요.")
     public ResponseEntity<CreatePostResponse> postCreate(@RequestBody CreatePostRequest request) {
-
         // @RequestBody : HTTP 요청의 본문(body)을 Java 객체로 변환해주는 역할
 
         CreatePostResponse response = postService.createPost(request);
-
 
         // 성공했다는 status를 담아서 response 보내기
         return new ResponseEntity<>(response, HttpStatus.OK);
