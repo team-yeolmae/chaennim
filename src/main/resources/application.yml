@@ -20,11 +20,11 @@ spring:
 
 # JPA/Hibernate ??
 # Hibernate : JPA? ???. ?? ??? ?????? ??? ??? ????? ORM
-jpa:
-  hibernate:
-    ddl-auto: create
-  properties:
+  jpa:
     hibernate:
-      dialect: org.hibernate.dialect.MySQL57Dialect
-      show_sql: true
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL57Dialect
+        show_sql: true
 
