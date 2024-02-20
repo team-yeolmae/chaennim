@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
  * 결과적으로 코드의 재사용성과 유지보수성 향상
  * */
 
-/** REST란
+/** REST란?
  * Representational Astate Transfer
  * 자원을 이름으로 구분하여 자원의 상태를 주고받는 것
  * REST는 기본적으로 웹의 기존 기술과 HTTP 프로토콜을 그대로 사용하기 때문에,
@@ -30,8 +30,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @ResponseBody
 @RequestMapping("/api/v1/posts")
-// @RequiredArgsConstructor : final 혹은 @NonNull 어노테이션이 붙은 필드에 대한 생성자 자동 생성
-@RequiredArgsConstructor
+@RequiredArgsConstructor   // @RequiredArgsConstructor: final 혹은 @NonNull 어노테이션이 붙은 필드에 대한 생성자 자동 생성
 public class PostController {
 
     private final PostService postService;
@@ -69,7 +68,7 @@ public class PostController {
     public ResponseEntity<DeletePostResponse> postDelete(@PathVariable Long postId) {
 
         DeletePostResponse response = postService.deletePost(postId);
-
+        
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
